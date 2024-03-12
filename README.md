@@ -1,22 +1,21 @@
 # neo4j-docker-backup-restore
 
+first we bind our dump file to the docker-compose volume
 
-
-Afterward, we access the MongoDB container.
+and then in the command section we type this command:
 ``` 
-$ docker exec -ti <neo4j's container name> sh
-$ cd backup
+$ command: neo4j-admin database load --from-path=/var/lib/neo4j/import neo4j --overwrite-destination=true --verbose
+$ docker compose up -d 
 ```
 
-
-### This command is used to backup data from a MongoDB database.
+then we go inside the container and check the logs
 ```
-$ mongodump --username admin_user --password admin_pass --out=/backup/
+$ docker logs  <neo4j's container name> 
 ```
 
-
-### restore the database
+When you see that you are successfull. again we change the command in the docker compose file
 ```
-$ mongorestore --username admin_user --password admin_pass --authenticationDatabase admin --db my_database  /backup/dms-database/
+$ command: neo4j
+$ docker compose up -d 
 ```
 

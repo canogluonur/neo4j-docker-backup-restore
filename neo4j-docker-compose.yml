@@ -1,0 +1,13 @@
+  neo4j:
+    image: neo4j:5
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: admin/adminpass
+    volumes:
+      - ./data-neo4j:/data
+      - ./neo4j.dump:/var/lib/neo4j/import/neo4j.dump
+    command: neo4j
+#neo4j-admin database load --from-path=/var/lib/neo4j/import neo4j --overwrite-destination=true --verbose
